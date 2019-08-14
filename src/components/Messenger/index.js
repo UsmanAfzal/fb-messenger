@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 
 import Threads from './ThreadsContainer'
-import Chat from './Chat/Chat'
+import Chat from './Chat/ChatContainer'
 
 const Messenger = () => (
   <div className="messenger">
