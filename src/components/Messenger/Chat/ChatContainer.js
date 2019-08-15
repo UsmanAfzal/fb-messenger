@@ -4,13 +4,7 @@ import * as api from '../../../api/message'
 import Chat from './Chat'
 
 class ChatContainer extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      messages: [],
-    }
-  }
+  state = { messages: [] }
 
   componentDidMount() {
     this.fetchMessages(this.props.match.params.username)

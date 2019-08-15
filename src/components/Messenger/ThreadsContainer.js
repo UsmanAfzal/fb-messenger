@@ -4,12 +4,7 @@ import Threads from './Threads'
 import { fetchThreads } from '../../api/thread'
 
 class ThreadsContainer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      threads: [],
-    }
-  }
+  state = { threads: [] }
 
   componentDidMount() {
     fetchThreads()

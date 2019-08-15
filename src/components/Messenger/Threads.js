@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import { fetchThreads } from '../../api/thread'
 import Avatar from '../Layout/Avatar'
 import Icon from '../Layout/Icon'
 
