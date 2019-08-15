@@ -2,23 +2,15 @@ import React, { Component } from "react";
 import "./Login.css";
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-
-    // Here you'll need to set up the state of the form
-    this.state = {};
+  state = {
+    email: "",
+    password: ""
   }
 
   handleChange = (name, event) => {
     let change = {};
-    /*
-      explanation about the expression: change[name]
-      change.email = event  // the change variable is an object and so you can add a property by doing .name_of_the_property
-      change["email"] = event // the change variable is an object and so you can add a property by doing ["string_with_the_name_of_the_property_notice_the_quotes"]
-      change[name] = event // the change variable is an object and so you can add a property by doing [variable_with_the_name_of_the_property_notice_no_quotes]
-    */
     change[name] = event.target.value;
-    //You need to set the change object in the state of the component
+    this.setState(change)
   };
 
   handleSubmit = async e => {
@@ -28,7 +20,9 @@ class Login extends Component {
     const { history } = this.props;
     const { password, email } = this.state;
 
-    // You can add some validation here to make sure password and email are provided
+    if(!password || !email) {
+      alert('Email and password are required');
+    }
 
     const { status } = await fetch("/api/auth", {
       method: "POST",
@@ -40,7 +34,7 @@ class Login extends Component {
     });
 
     if (status === 200) {
-      // Here you need to "send" the user to '/'
+      history.push("/")
     }
   };
 
@@ -63,6 +57,7 @@ class Login extends Component {
             placeholder="Enter password"
             className="form-control"
             value={this.state.password}
+            onChange={e => this.handleChange("password", e)}
           />
         </div>
         <button type="submit" className="btn btn-lg btn-primary btn-block">

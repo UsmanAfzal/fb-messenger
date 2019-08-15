@@ -12,7 +12,7 @@ const TopBar = props => {
       </Link>
       <ul className={`${props.userPosition || 'right'}`}>
         <li>
-        <Link to="/login">
+        <Link to="/login" onClick={logOut}>
             log out
           </Link>
         </li>
