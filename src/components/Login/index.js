@@ -1,26 +1,15 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Input from "../Form/Input";
 import "./Login.css";
 
-class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
+const Login = (props) => {
 
-  handleChange = (name, event) => {
-    let change = {};
-    change[name] = event.target.value;
-    this.setState(change);
-  };
+  const [email, setEmail] = useState('clone@facebook.com')
+  const [password, setPassword] = useState('')
 
-  handleSubmit = async e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    const { history } = this.props;
-    const { password, email } = this.state;
+    const { history } = props;
 
     if (!password || !email) {
       alert("Email and password are required");
@@ -40,33 +29,31 @@ class Login extends Component {
       history.push("/");
     }
   };
-
-  render() {
-    return (
-      <form className="form-signin" onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          <h2 className="form-signin-heading">Please sign in</h2>
-        </div>
-        <div className="form-group">
-          <Input
-            type="email"
-            placeholder="Enter email"
-            value={this.state.email}
-            onChange={e => this.handleChange("email", e)}
-          />
-          <Input
-            type="password"
-            placeholder="Enter password"
-            value={this.state.password}
-            onChange={e => this.handleChange("password", e)}
-          />
-        </div>
-        <button type="submit" className="btn btn-lg btn-primary btn-block">
-          Sign in
-        </button>
-      </form>
-    );
-  }
+  
+  return (
+    <form className="form-signin" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <h2 className="form-signin-heading">Please sign in</h2>
+      </div>
+      <div className="form-group">
+        <Input
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+        <Input
+          type="password"
+          placeholder="Enter password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+      </div>
+      <button type="submit" className="btn btn-lg btn-primary btn-block">
+        Sign in
+      </button>
+    </form>
+  )
 }
 
 export default Login;
